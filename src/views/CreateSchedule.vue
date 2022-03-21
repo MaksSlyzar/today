@@ -3,12 +3,40 @@
 		<div class="lg-sao-label">Create Schedule</div>
 
     <div class="CreateSteps">
-      <div class="InputName">
-        Enter name:
+<!-- Monday -->
+      <div class="InputMonday">
+        <input type="text" class="Lessons" id="FirstLessonMonday"/><br/>
+        <input type="text" class="Lessons" id="SecondLessonMonday"/><br/>
+        <input type="text" class="Lessons" id="ThirdLessonMonday"/><br/>
+        <input type="text" class="Lessons" id="FourthLessonMonday"/><br/>
       </div>
-
-      <div class="InputSeterday DisplayNone">
-        INPUT SETERDAY
+<!--Tuesday -->
+      <div class="InputTuesday DisplayNone">
+        <input type="text" class="Lessons" id="FirstLessonTuesday"/><br/>
+        <input type="text" class="Lessons" id="SecondLessonTuesday"/><br/>
+        <input type="text" class="Lessons" id="ThirdLessonTuesday"/><br/>
+        <input type="text" class="Lessons" id="FourthLessonTuesday"/><br/>
+      </div>
+<!--Wednesday-->
+      <div class="InputWednesday DisplayNone">
+        <input type="text" class="Lessons" id="FirstLessonWednesday"/><br/>
+        <input type="text" class="Lessons" id="SecondLessonWednesday"/><br/>
+        <input type="text" class="Lessons" id="ThirdLessonWednesday"/><br/>
+        <input type="text" class="Lessons" id="FourthLessonWednesday"/><br/>
+      </div>
+<!--Thursday-->
+      <div class="InputThursday DisplayNone">
+        <input type="text" class="Lessons" id="FirstLessonThursday"/><br/>
+        <input type="text" class="Lessons" id="SecondLessonThursday"/><br/>
+        <input type="text" class="Lessons" id="ThirdLessonThursday"/><br/>
+        <input type="text" class="Lessons" id="FourthLessonThursday"/><br/>
+      </div>
+<!--Friday-->
+      <div class="InputWednesday DisplayNone">
+        <input type="text" class="Lessons" id="FirstLessonFriday"/><br/>
+        <input type="text" class="Lessons" id="SecondLessonFriday"/><br/>
+        <input type="text" class="Lessons" id="ThirdLessonFriday"/><br/>
+        <input type="text" class="Lessons" id="FourthLessonFriday"/><br/>
       </div>
     </div>
 	</div>
@@ -34,11 +62,32 @@ export default {
   .CreateSteps {
     position: absolute;
     width: 100%;
-    bottom: 50px;
+    top: 10%;
+    left: -40%;
+    color: white;
+    line-height: 1.8;
 
-    .InputName {
-      color: white;
+    .Lessons{
+      width: 15%;
+      height: 20px;
     }
+
+    .InputMonday {
+
+    }
+    .InputTuesday{
+
+    }
+    .InputWednesday{
+
+    }
+    .InputThursday{
+
+    }
+    .InputWednesday{
+
+    }
+
   }
 }
 </style>
