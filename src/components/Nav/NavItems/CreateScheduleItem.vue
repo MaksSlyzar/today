@@ -5,18 +5,10 @@
         <SvgSprite class="logo-icon" symbol="icon-list" size="70" />
       </div>
     </router-link>
-
-    <div class="SaoArrow"></div>
-
-    <div class="Line-sm"></div>
     <!--    <div class="Line"></div>-->
 
     <div class="Options">
       <div class="List">
-        <div class="Item"></div>
-        <div class="Item"></div>
-        <div class="Item"></div>
-        <div class="Item"></div>
       </div>
     </div>
   </div>
