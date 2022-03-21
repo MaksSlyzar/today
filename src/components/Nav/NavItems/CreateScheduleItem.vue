@@ -13,7 +13,9 @@
         <router-link to="/create-schedule">
           <div class="Item">Створити розклад</div>
         </router-link>
+
         <div class="Item">Розклад</div>
+
       </div>
     </div>
   </div>
