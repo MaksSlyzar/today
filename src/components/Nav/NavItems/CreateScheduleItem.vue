@@ -14,8 +14,9 @@
           <div class="Item">Створити розклад</div>
         </router-link>
 
-        <div class="Item">Розклад</div>
-
+        <router-link to="/view-schedule">
+          <div class="Item">Розклад</div>
+        </router-link>
       </div>
     </div>
   </div>

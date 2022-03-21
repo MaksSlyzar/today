@@ -1,5 +1,5 @@
 <template>
-  <div class="Nav">
+  <div class="Nav DisplayNone">
     <div class="Swipe" v-touch:swipe.bottom="swipeHandlerBottom" >
 
     </div>
