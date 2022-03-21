@@ -20,6 +20,7 @@ export default {
   methods: {
     click () {
       this.$emit("changeActive", "CreateScheduleItem");
+      console.log("Awadakidarwa")
     }
   }
 }
