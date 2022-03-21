@@ -1,14 +1,19 @@
 <template>
   <div class="Item">
-    <router-link to="/create-schedule">
-      <div class="Icon" @click="click">
-        <SvgSprite class="logo-icon" symbol="icon-list" size="70" />
-      </div>
-    </router-link>
+    <div class="Icon" @click="click">
+      <SvgSprite class="logo-icon" symbol="icon-list" size="70" />
+    </div>
+
+    <div class="SaoArrow"></div>
     <!--    <div class="Line"></div>-->
+    <div class="Line-sm"></div>
 
     <div class="Options">
       <div class="List">
+        <router-link to="/create-schedule">
+          <div class="Item">Створити розклад</div>
+        </router-link>
+        <div class="Item">Розклад</div>
       </div>
     </div>
   </div>
