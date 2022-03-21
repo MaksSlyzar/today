@@ -1,0 +1,41 @@
+@font-face {
+	font-family: 'SAOUI-Bold';
+	src: url("./assets/fonts/SAOUI-Bold.otf");
+}
+
+@font-face {
+	font-family: 'Druk';
+	src: url("./assets/fonts/DrukCyr-Medium.ttf");
+}
+
+.lg-sao-label {
+	font-family: 'SAOUI-Bold';
+	padding: 10px;
+	font-size: 23px;
+}
+
+.sm-sao-label {
+	font-family: 'SAOUI-Bold';
+	padding: 10px;
+	font-size: 18px;
+}
+
+.m-sao-label {
+	font-family: 'SAOUI-Bold';
+	padding: 10px;
+	font-size: 20px;
+}
+
+@media screen and (min-width: 600px) {
+	.lg-sao-label {
+		float: left;
+	}
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+body {
+	
+}
