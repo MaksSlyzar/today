@@ -5,7 +5,7 @@
     </div>
 
     <div class="Items" v-bind:class="{ DisplayNone: !showItems }">
-      <DownloadItem @change-active="activeNote" v-bind:class="{ Active: navItems.DownloadItem.active }"/>
+      <CreateScheduleItem @change-active="activeNote" v-bind:class="{ Active: navItems.CreateScheduleItem.active }" />
       <NotesItem @change-active="activeNote" v-bind:class="{ Active: navItems.NotesItem.active }" />
       <SettingsItem @change-active="activeNote" v-bind:class="{ Active: navItems.SettingsItem.active }"/>
     </div>
@@ -15,21 +15,22 @@
 <script>
 import SettingsItem from "@/components/Nav/NavItems/SettingsItem";
 import NotesItem from "@/components/Nav/NavItems/NotesItem";
-import DownloadItem from "@/components/Nav/NavItems/DownloadItem";
+import CreateScheduleItem from "@/components/Nav/NavItems/CreateScheduleItem";
 
 export default {
   name: "Nav2",
   components: {
     SettingsItem,
     NotesItem,
-    DownloadItem
+    CreateScheduleItem
   },
   data: () => {
     return {
       navItems: {
-        SettingsItem: {active: true},
+        SettingsItem: {active: false},
         NotesItem: {active: false},
-        DownloadItem: {active: false}
+        DownloadItem: {active: false},
+        CreateScheduleItem: {active: false}
       },
       showItems: true
     }
