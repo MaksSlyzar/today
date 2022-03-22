@@ -3,7 +3,6 @@
 		<div class="lg-sao-label">Create Schedule</div>
 
     <div class="CreateSteps">
-<!-- Monday -->
 
       <div class="InputItems">
         <div>{{this.weekDaysNames[this.day]}}</div>
@@ -12,6 +11,7 @@
           <div v-for="item in schedule[day]" v-bind:key="item.key">
             <input v-model="item.item" />
             <input v-model="item.teacher" />
+            <input class="objectRoom" v-model="item.room" />
           </div>
         </div>
 
@@ -31,10 +31,10 @@ export default {
 	name: 'CreateSchedule',
 	data: () => {
 		return {
-      weekDaysNames: ["Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота", "Неділя"],
+      weekDaysNames: ["Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця"],
 			scheduleName: '',
       schedule: [
-          [], [], [], [], [], [], []
+          [], [], [], [], []
       ],
       day: 0,
       newInputValue: ''
@@ -44,8 +44,9 @@ export default {
     newInput: function () {
       this.schedule[this.day].push({
         key: Math.round(Math.random() * 100000),
-        item: "Math",
-        teacher: ""
+        item: "",
+        teacher: "",
+        room: "",
       });
 
       setTimeout(() => {
@@ -56,13 +57,13 @@ export default {
     },
     nextStep: function () {
       this.day += 1;
-      if (this.day > 6)
+      if (this.day > 4)
         this.day = 0;
     },
     previousStep: function () {
       this.day -= 1;
       if (this.day < 0)
-        this.day = 6;
+        this.day = 4;
     }
   }
 }
@@ -82,6 +83,10 @@ export default {
     .Lessons {
       width: 15%;
       height: 20px;
+    }
+
+    .objectRoom{
+      width: 2%;
     }
   }
 }
