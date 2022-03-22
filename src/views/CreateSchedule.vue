@@ -4,40 +4,24 @@
 
     <div class="CreateSteps">
 <!-- Monday -->
-      <div class="InputMonday">
-        <input type="text" class="Lessons" id="FirstLessonMonday"/><br/>
-        <input type="text" class="Lessons" id="SecondLessonMonday"/><br/>
-        <input type="text" class="Lessons" id="ThirdLessonMonday"/><br/>
-        <input type="text" class="Lessons" id="FourthLessonMonday"/><br/>
+
+      <div class="InputItems">
+        <div>{{this.weekDaysNames[this.day]}}</div>
+
+        <div ref="items">
+          <div v-for="item in schedule[day]" v-bind:key="item.key">
+            <input v-model="item.item" />
+            <input v-model="item.teacher" />
+          </div>
+        </div>
+
+        <div>
+          <input v-on:keydown="newInput" v-model="newInputValue" />
+        </div>
       </div>
-<!--Tuesday -->
-      <div class="InputTuesday DisplayNone">
-        <input type="text" class="Lessons" id="FirstLessonTuesday"/><br/>
-        <input type="text" class="Lessons" id="SecondLessonTuesday"/><br/>
-        <input type="text" class="Lessons" id="ThirdLessonTuesday"/><br/>
-        <input type="text" class="Lessons" id="FourthLessonTuesday"/><br/>
-      </div>
-<!--Wednesday-->
-      <div class="InputWednesday DisplayNone">
-        <input type="text" class="Lessons" id="FirstLessonWednesday"/><br/>
-        <input type="text" class="Lessons" id="SecondLessonWednesday"/><br/>
-        <input type="text" class="Lessons" id="ThirdLessonWednesday"/><br/>
-        <input type="text" class="Lessons" id="FourthLessonWednesday"/><br/>
-      </div>
-<!--Thursday-->
-      <div class="InputThursday DisplayNone">
-        <input type="text" class="Lessons" id="FirstLessonThursday"/><br/>
-        <input type="text" class="Lessons" id="SecondLessonThursday"/><br/>
-        <input type="text" class="Lessons" id="ThirdLessonThursday"/><br/>
-        <input type="text" class="Lessons" id="FourthLessonThursday"/><br/>
-      </div>
-<!--Friday-->
-      <div class="InputWednesday DisplayNone">
-        <input type="text" class="Lessons" id="FirstLessonFriday"/><br/>
-        <input type="text" class="Lessons" id="SecondLessonFriday"/><br/>
-        <input type="text" class="Lessons" id="ThirdLessonFriday"/><br/>
-        <input type="text" class="Lessons" id="FourthLessonFriday"/><br/>
-      </div>
+
+      <button class="PreviousButton" @click="previousStep">Previous</button>
+      <button class="NextStepButton" @click="nextStep">Next</button>
     </div>
 	</div>
 </template>
@@ -47,9 +31,40 @@ export default {
 	name: 'CreateSchedule',
 	data: () => {
 		return {
-			scheduleName: ''
+      weekDaysNames: ["Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота", "Неділя"],
+			scheduleName: '',
+      schedule: [
+          [], [], [], [], [], [], []
+      ],
+      day: 0,
+      newInputValue: ''
 		}
-	}
+	},
+  methods: {
+    newInput: function () {
+      this.schedule[this.day].push({
+        key: Math.round(Math.random() * 100000),
+        item: "Math",
+        teacher: ""
+      });
+
+      setTimeout(() => {
+        this.$refs.items.children[this.$refs.items.children.length - 1].firstChild.focus()
+        this.schedule[this.day].item = this.newInputValue;
+        this.newInputValue = "";
+      }, 2)
+    },
+    nextStep: function () {
+      this.day += 1;
+      if (this.day > 6)
+        this.day = 0;
+    },
+    previousStep: function () {
+      this.day -= 1;
+      if (this.day < 0)
+        this.day = 6;
+    }
+  }
 }
 </script>
 
@@ -63,31 +78,11 @@ export default {
     position: absolute;
     width: 100%;
     top: 10%;
-    left: -40%;
-    color: white;
-    line-height: 1.8;
 
-    .Lessons{
+    .Lessons {
       width: 15%;
       height: 20px;
     }
-
-    .InputMonday {
-
-    }
-    .InputTuesday{
-
-    }
-    .InputWednesday{
-
-    }
-    .InputThursday{
-
-    }
-    .InputWednesday{
-
-    }
-
   }
 }
 </style>
