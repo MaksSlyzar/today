@@ -44,7 +44,7 @@ export default {
     newInput: function () {
       this.schedule[this.day].push({
         key: Math.round(Math.random() * 100000),
-        item: "Math",
+        item: "",
         teacher: ""
       });
 
