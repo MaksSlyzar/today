@@ -1,17 +1,21 @@
 <template>
-  <div class="App">
+  <div class="App" @click="appClick">
     <!-- <router-link to="/about">About</router-link> -->
 		<router-view/>
-		<Nav />
+
+    <Nav id="nav" :class="{ DisplayNone: !visibilityNav }" />
+
+    <show-nav-button @show-nav="showNav" />
 	</div>
 </template>
 
 <script>
 import Nav from './components/Nav/Nav2'
+import ShowNavButton from "@/components/Nav/ShowNavButton";
 
 export default {
   name: 'App',
-  components: {Nav},
+  components: {Nav, ShowNavButton},
 	mounted () {
 		if (localStorage.getItem("auth") == undefined)
 			this.$socket.emit("register");
@@ -29,7 +33,31 @@ export default {
 						// Put axios code here
 				}, false);
 		}
-	}
+
+    const nav = document.getElementById("nav");
+    const navItems = document.getElementById("navItems");
+    console.log(navItems)
+
+    window.onclick = (event) => {
+      if (event.target == nav || event.target == navItems) {
+        this.visibilityNav = false;
+      }
+
+      if (event.target.className == "List") {
+        this.visibilityNav = false;
+      }
+    }
+	},
+  data: () => {
+    return {
+      visibilityNav: true
+    }
+  },
+  methods: {
+    showNav () {
+      this.visibilityNav = true;
+    }
+  }
 }
 </script>
 
@@ -46,6 +74,7 @@ html {
 
 body {
 	width: 100%;
+  height: 100%;
 	margin: 0;
 	padding: 0;
 	background: url("https://i.pinimg.com/originals/83/4d/59/834d59420f8381b83e62ef1aeede3da7.jpg");
@@ -73,14 +102,16 @@ body {
   text-align: center;
   color: #2c3e50;
 	width: 100%;
+  height: 100%;
 }
 
 .App {
 	width: 100%;
+  height: 100%;
 }
 
 #nav {
-  padding: 30px;
+  //padding: 30px;
   a {
     font-weight: bold;
     color: #2c3e50;

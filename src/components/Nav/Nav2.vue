@@ -1,10 +1,6 @@
 <template>
-  <div class="Nav DisplayNone">
-    <div class="Swipe" v-touch:swipe.bottom="swipeHandlerBottom" >
-
-    </div>
-
-    <div class="Items" v-bind:class="{ DisplayNone: !showItems }">
+  <div class="Nav">
+    <div class="Items" v-bind:class="{ DisplayNone: !showItems }" id="navItems">
       <CreateScheduleItem @change-active="activeNote" v-bind:class="{ Active: navItems.CreateScheduleItem.active }" />
       <NotesItem @change-active="activeNote" v-bind:class="{ Active: navItems.NotesItem.active }" />
       <SettingsItem @change-active="activeNote" v-bind:class="{ Active: navItems.SettingsItem.active }"/>
@@ -55,33 +51,32 @@ export default {
 <style lang="scss">
 .DisplayNone {
   display: none;
+  visibility: hidden;
 }
 
 .Nav {
   position: absolute;
   top: 0;
+  left: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
   text-align: left;
-
-  .Swipe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+  background: rgba(0, 0, 0, 0.2);
 
   .Items {
     position: relative;
-    //width: auto;
+    top: calc(100% - 500px);
+    width: 400px;
     margin-left: 5px;
     //display: ;
-    top: calc(100% - 600px);
+    //top: calc(100% - 600px);
 
     .Item {
       position: relative;
+      display: block;
       //width: 200px;
+      width: min-content;
       height: 70px;
       margin-top: 30px;
 
@@ -103,6 +98,7 @@ export default {
       .Options {
         display: none;
         position: absolute;
+        width: 250px;
         left: 120px;
         top: -150px;
         height: 400px;
@@ -115,7 +111,6 @@ export default {
           vertical-align: middle;
           display: table-cell;
           height: 400px;
-
 
           .Item {
             display: inline-flex;
@@ -216,6 +211,23 @@ export default {
       }
     }
   }
+}
+
+@keyframes showNavANIM {
+  from {
+    top: 0;
+  }
+
+  to {
+    top: calc(100% - 400px);
+  }
+}
+
+.showNavAnim {
+  animation-duration: 1.5s;
+  animation-name: showNavANIM;
+  animation-iteration-count: inherit;
+  animation-direction: normal;
 }
 
 </style>

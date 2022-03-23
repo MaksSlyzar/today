@@ -10,7 +10,6 @@
 
     <div class="Options">
       <div class="List">
-        <div class="Item"></div>
         <div class="Item">First notate!</div>
         <div class="Item">First notate!</div>
         <div class="Item">First notate!</div>
