@@ -81,7 +81,6 @@ export default {
   visibility: hidden;
 }
 
-
 @keyframes showAnim {
   from {
     top: 0;
