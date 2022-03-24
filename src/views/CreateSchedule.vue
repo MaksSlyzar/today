@@ -3,14 +3,26 @@
 		<div class="lg-sao-label">Create Schedule</div>
 
     <div class="CreateSteps">
+      <div class="InputTeachers">
 
-      <div class="InputItems">
+        <div ref="teachers">
+          <div v-for="teacher in teachers" v-bind:key="teacher.key">
+            <input v-model="teacher.item" />
+            <input v-model="teacher.teacher" />
+          </div>
+        </div>
+
+        <div>
+          <input v-on:keydown="newTeacherInput" v-model="newTeacherInputValue" />
+        </div>
+      </div>
+
+      <div class="InputItems DisplayNone">
         <div>{{this.weekDaysNames[this.day]}}</div>
 
         <div ref="items">
           <div v-for="item in schedule[day]" v-bind:key="item.key">
             <input v-model="item.item" />
-            <input v-model="item.teacher" />
             <input class="objectRoom" v-model="item.room" />
           </div>
         </div>
@@ -37,16 +49,30 @@ export default {
           [], [], [], [], []
       ],
       day: 0,
-      newInputValue: ''
+      newInputValue: '',
+      newTeacherInputValue: '',
+      teachers: []
 		}
 	},
   methods: {
+    newTeacherInput: function () {
+      this.teachers.push({
+        key: Math.round(Math.random() * 100000),
+        item: "",
+        teacher: ""
+      });
+
+      setTimeout(() => {
+        this.$refs.teachers.children[this.$refs.teachers.children.length - 1].firstChild.focus()
+        this.teachers.item = this.newTeacherInputValue;
+        this.newTeacherInputValue = "";
+      }, 2)
+    },
     newInput: function () {
       this.schedule[this.day].push({
         key: Math.round(Math.random() * 100000),
         item: "",
-        teacher: "",
-        room: "",
+        room: ""
       });
 
       setTimeout(() => {
