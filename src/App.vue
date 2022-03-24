@@ -3,7 +3,7 @@
     <!-- <router-link to="/about">About</router-link> -->
 		<router-view/>
 
-    <Nav id="nav" :class="{ DisplayNone: !visibilityNav }" />
+    <Nav id="nav" ref="navComponent" />
 
     <show-nav-button @show-nav="showNav" />
 	</div>
@@ -40,11 +40,11 @@ export default {
 
     window.onclick = (event) => {
       if (event.target == nav || event.target == navItems) {
-        this.visibilityNav = false;
+        this.$refs.navComponent.hide()
       }
 
       if (event.target.className == "List") {
-        this.visibilityNav = false;
+        this.$refs.navComponent.hide()
       }
     }
 	},
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     showNav () {
-      this.visibilityNav = true;
+      this.$refs.navComponent.show();
     }
   }
 }

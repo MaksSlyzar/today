@@ -1,6 +1,10 @@
 <template>
-  <div class="Nav">
-    <div class="Items" v-bind:class="{ DisplayNone: !showItems }" id="navItems">
+  <div class="Nav" :class="{ DisplayNone: !visibilityNav }">
+    <div class="Items"
+         v-bind:class="{ DisplayNone: !showItems,
+                         hide: hide_class,
+                         show: show_class}"
+         id="navItems">
       <CreateScheduleItem @change-active="activeNote" v-bind:class="{ Active: navItems.CreateScheduleItem.active }" />
       <NotesItem @change-active="activeNote" v-bind:class="{ Active: navItems.NotesItem.active }" />
       <SettingsItem @change-active="activeNote" v-bind:class="{ Active: navItems.SettingsItem.active }"/>
@@ -28,7 +32,10 @@ export default {
         DownloadItem: {active: false},
         CreateScheduleItem: {active: false}
       },
-      showItems: true
+      showItems: true,
+      hide_class: false,
+      show_class: false,
+      visibilityNav: false
     }
   },
   methods: {
@@ -43,6 +50,25 @@ export default {
     },
     swipeHandlerBottom () {
       this.showItems = !this.showItems;
+    },
+    show () {
+      this.visibilityNav = true;
+      this.show_class = true;
+      this.hide_class = false;
+
+      setTimeout(() => {
+        this.show_class = false;
+      }, 500)
+    },
+    hide () {
+      this.visibilityNav = true;
+      this.show_class = false;
+      this.hide_class = true;
+
+      setTimeout(() => {
+        this.hide_class = false;
+        this.visibilityNav = false;
+      }, 450)
     }
   }
 }
@@ -213,19 +239,36 @@ export default {
   }
 }
 
-@keyframes showNavANIM {
+@keyframes showAnim {
   from {
     top: 0;
   }
 
   to {
-    top: calc(100% - 400px);
+    top: calc(100% - 500px);
   }
 }
 
-.showNavAnim {
-  animation-duration: 1.5s;
-  animation-name: showNavANIM;
+@keyframes hideAnim {
+  from {
+    top: calc(100% - 500px);
+  }
+
+  to {
+    top: -250px;
+  }
+}
+
+.show {
+  animation-duration: 0.5s;
+  animation-name: showAnim;
+  animation-iteration-count: inherit;
+  animation-direction: normal;
+}
+
+.hide {
+  animation-duration: 0.5s;
+  animation-name: hideAnim;
   animation-iteration-count: inherit;
   animation-direction: normal;
 }

@@ -22,5 +22,7 @@ export default {
   background: white;
   font-family: SAOUI-Bold;
   padding-top:10px;
+  cursor: pointer;
+  user-select: none;
 }
 </style>
