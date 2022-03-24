@@ -14,7 +14,9 @@
 
         <div class="Item">DEV Exit</div>
 
-        <div class="Item">DEV Hello world</div>
+        <router-link to="/settings">
+          <div class="Item">Settings</div>
+        </router-link>
       </div>
     </div>
   </div>

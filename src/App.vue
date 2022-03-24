@@ -64,6 +64,7 @@ export default {
 
 <style lang="scss">
 @import '/assets/styles/main.scss';
+@import '/assets/styles/navStyle.scss';
 
 html {
 	width: 100%;
