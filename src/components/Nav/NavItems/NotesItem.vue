@@ -33,6 +33,11 @@ export default {
     removeNote (noteIndex) {
       // console.log("hello world")
       this.swipeElement = noteIndex;
+
+      setTimeout(() => {
+        if (this.swipeElement == noteIndex)
+            this.swipeElement = -1;
+      }, 200);
     }
   },
   components: {
