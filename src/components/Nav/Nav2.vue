@@ -6,11 +6,11 @@
                          show: show_class}"
          id="navItems">
       <CreateScheduleItem @change-active="activeNote" v-bind:class="{ Active: navItems.CreateScheduleItem.active }" />
+
       <NotesItem @change-active="activeNote" v-bind:class="{ Active: navItems.NotesItem.active }" />
       <SettingsItem @change-active="activeNote" v-bind:class="{ Active: navItems.SettingsItem.active }"/>
+      <MyTimeItem @change-active="activeNote" v-bind:class="{ Active: navItems.MyTimeItem.active }" />
     </div>
-
-<!--    <SaoNormalModal class=""/>-->
   </div>
 </template>
 
@@ -18,11 +18,13 @@
 import SettingsItem from "@/components/Nav/NavItems/SettingsItem";
 import NotesItem from "@/components/Nav/NavItems/NotesItem";
 import CreateScheduleItem from "@/components/Nav/NavItems/CreateScheduleItem";
+import MyTimeItem from "@/components/Nav/NavItems/MyTimeItem";
 // import SaoNormalModal from "@/components/Modals/SaoNormalModal";
 
 export default {
   name: "Nav2",
   components: {
+    MyTimeItem,
     // SaoNormalModal,
     SettingsItem,
     NotesItem,
@@ -34,7 +36,8 @@ export default {
         SettingsItem: {active: false},
         NotesItem: {active: false},
         DownloadItem: {active: false},
-        CreateScheduleItem: {active: false}
+        CreateScheduleItem: {active: false},
+        MyTimeItem: {active: false}
       },
       showItems: true,
       hide_class: false,

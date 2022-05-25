@@ -1,30 +1,18 @@
 <template>
 	<div class="Notates">
-		<div class="lg-sao-label">Notates</div>
+		<div class="lg-sao-label">{{$store.state.javaData}}</div>
 
 		<div class="List">
 			<div class="Item" v-for="note in getNotes()" :key="note.index"  @dblclick="dblClickItem(note.index)" @click="showInputPanel(note.index)" v-bind:class="{ activeItem: note.active }">
 				<div class="Title">{{note.title}}</div>
 
 				<div class="Description">{{note.description}}</div>
-
-				<SvgSprite class="Context-button" symbol="icon-config" size="60" v-bind:class="{ hidden: note.context }" @click="changeContext(note.index, true, false)" />
-
 				<!-- <div class="Date">{{note.date.toLocaleDateString()}}</div> -->
 				<div class="Date">{{note.date}}</div>
-
-				<div class="Context-menu" v-bind:class="{ hidden: !note.context }">
-					<div class="Context-menu__Item" @click="removeItem(note.index)">
-						Remove
-					</div>
-					<div class="Context-menu__Item" @click="cloneItem(note.index)">
-						Clone
-					</div>
-				</div>
 			</div>
 		</div>
 
-		<SvgSprite class="addNoteButton" symbol="icon-plus" size="60" v-bind:class="{ hidden: !showInputPanel }" @click="addNote" /> 
+		<SvgSprite class="addNoteButton" symbol="icon-plus" size="60" v-bind:class="{ hidden: !showInputPanel }" @click="addNote" />
 
 		<InputPanel ref="inppanel" />
 	</div>
@@ -42,18 +30,17 @@ export default {
 			removeAttemption: false,
 			title: '',
 			description: '',
-			changeIndex: -1
+			changeIndex: -1,
+      androidOutput: 'NULL'
 		}
 	},
 	mounted () {
 		// this.$socket.emit("changeNote", { notes: this.notes, passwd: localStorage.getItem })
-		this.$socket.emit("getNotes", {password: localStorage.getItem("password")});
 	},
 	methods: {
 		addNote () {
-			const noteIndex = Math.round(Math.random() * 100000000);
-			this.$socket.emit("addNote", {password: localStorage.getItem("password"), note: { index: noteIndex }})
-
+      const noteIndex = Math.round(Math.random() * 10000);
+      this.$store.commit("newNote", { title: '', description: '', index: noteIndex });
 			this.showInputPanel(noteIndex);
 		},
 		getNotes () {
@@ -107,10 +94,9 @@ export default {
 
 			this.changeContext(noteIndex, false, false);
 		},
-		dblClickItem (noteIndex) {
-			console.log("DBL CLICK")
-			this.$socket.emit("activeNote", { password: localStorage.getItem("password"), index: noteIndex, value: -1 })
-		},
+		dblClickItem () {
+      console.log("DBL CLICK")
+    },
 		randomIndex () {
 			return Math.floor(Math.random() * 100000);
 		}
@@ -131,6 +117,8 @@ export default {
 
 	.addNoteButton {
 		position: fixed;
+    bottom: 100px;
+    left: calc(100% - 90px);
 		background: #EBA601;
 		border-radius: 100%;
 		fill: white;
@@ -158,6 +146,7 @@ export default {
 			position: relative;
 			z-index: 0;
 			margin-bottom: 5px;
+      padding-top: 7px;
 
 			.Title {
 				text-align: left;

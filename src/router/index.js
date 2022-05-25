@@ -39,6 +39,11 @@ const routes = [
 		path: '/view-schedule',
 		name: 'ViewSchedule',
 		component: () => import('@/views/ViewSchedule')
+	},
+	{
+		path: '/calendar',
+		name: 'Calendar',
+		component: () => import('@/views/Calendar/Calendar')
 	}
 ]
 

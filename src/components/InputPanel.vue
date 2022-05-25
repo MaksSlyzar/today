@@ -22,13 +22,16 @@ export default {
 			showPanelAnim: false,
 			hidePanelAnim: false,
 			editNoteIndex: -1,
-			title: '',
-			description: ''
+			note: null
 		}
 	},
 	methods: {
 		show (noteIndex) {
+      console.log(noteIndex, 'asds')
+      this.note = this.$store.getters.getNote(noteIndex);
 			this.editNoteIndex = noteIndex;
+
+      console.log(noteIndex, this.note)
 
 			let foundNote = false;
 
@@ -60,19 +63,15 @@ export default {
 			this.showPanelAnim = false;
 			this.hidePanelAnim = true;
 
-			let note;
-			for (let _note of this.$store.state.notes) {
-				if (_note.index == this.editNoteIndex) {
-					note = _note;
-				}
-			}
+			// const emitObj = {
+			// 	password: localStorage.getItem("password"),
+			// 	note: {...note, title: this.title, description: this.description}
+			// }
 
-			const emitObj = {
-				password: localStorage.getItem("password"),
-				note: {...note, title: this.title, description: this.description}
-			}
-			this.$socket.emit("changeNote", emitObj)
+      console.log('note', this.note)
+      this.note.edit({ title: this.title, description: this.description });
 
+      this.$store.commit("saveLocalStorage");
 			setTimeout(() => {
 				this.hidePanelAnim = false;
 				this.showPanel = false;

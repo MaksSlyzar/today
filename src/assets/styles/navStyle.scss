@@ -14,15 +14,15 @@
     width: 400px;
     margin-left: 5px;
     //display: ;
-    //top: calc(100% - 600px);
+    //top: calc(100% - 600px)
 
     .Item {
       position: relative;
       display: block;
       //width: 200px;
       width: min-content;
-      height: 70px;
-      margin-top: 30px;
+      height: 50px;
+      margin-top: 45px;
 
       .Icon {
         width: 70px;
@@ -37,6 +37,11 @@
         fill: white;
         background: rgba(255, 255, 255, 0.9);
         border-radius: 50%;
+        transition-duration: .5s;
+      }
+
+      svg:hover {
+        opacity: .7;
       }
 
       .Options {
@@ -48,6 +53,7 @@
         height: 400px;
         overflow-x: hidden;
         overflow-y: scroll;
+        transition-duration: 3s;
 
         .List {
           width: 250px;
@@ -67,6 +73,10 @@
             font-size: 20px;
             align-items: center;
             user-select: none;
+          }
+
+          .Item-blue {
+            background: lightskyblue;
           }
         }
       }

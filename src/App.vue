@@ -17,10 +17,11 @@ export default {
   name: 'App',
   components: {Nav, ShowNavButton},
 	mounted () {
-		if (localStorage.getItem("auth") == undefined)
-			this.$socket.emit("register");
-		else
-			this.$socket.emit("auth", { password: localStorage.getItem("password") })
+    this.$store.commit("loadLocalStorage");
+		// if (localStorage.getItem("auth") == undefined)
+		// 	this.$socket.emit("register");
+		// else
+		// 	this.$socket.emit("auth", { password: localStorage.getItem("password") })
 
 		document.addEventListener('deviceready', onDeviceReady, false);
 
